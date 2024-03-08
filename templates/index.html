@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block head %}
+    table
+{% endblock %}
+{% block body%}
+<div class="row" style="margin-top:20px; margin-left:20px">
+    <div class="col-md-8">
+        <h2>Available items on the Market</h2>
+        <p>Click on one of the items to start buying</p>
+        <br>
+       <table id="example" class="table table-hover table-light" style="width:100%">
+          <thead>
+             <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Barcode</th>
+                <th scope="col">Price</th>
+                <th scope="col">Description</th>                               
+                <th scope="col">Options</th>
+             </tr>
+          </thead>
+          <tbody>
+             {% for row in item_list %}            
+             <tr>
+               <td>{{ row[0] }}</td>
+               <td>{{ row[1] }}</td>
+               <td>{{ row[2] }}</td>
+               <td>{{ row[3] }}</td>
+               <td>{{ row[3] }}$</td>
+               <td>{{ row[4] }}</td>                             
+               <td>
+                  <div class="row">
+                   <button><a class="btn btn-secondary btn-sm" href="/edit/{{row[0]}}">Edit</a></button>
+                   <button><a class="btn btn-outline btn-danger btn-sm" href="/delete/{{row[0]}}"> Delete</a></button>
+                  </div>
+               </td>
+             </tr>
+             {% endfor %}
+          </tbody>
+       </table>
+    </div>
+    <h2>Add Item</h2>
+<div class="row"></div>
+<div class="row">
+   <div class="col-md-4">
+      <div class="card cardbody">
+         
+         <form action="{{url_for('add_item')}}" method="POST">
+            <div class="form-group">
+               <input type="text" class="form-control" placeholder="Item name?" name="name">
+            </div>
+            <div class="form-group">
+               <input type="text" class="form-control" placeholder="Barcode?" name="barcode?">
+            </div>
+            <div class="form-group">
+               <input type="number" class="form-control" placeholder="Price?" name="price">
+            </div>
+            <div class="form-group">
+               <input type="text" class="form-control" placeholder="Description?" name="description?">
+            </div>            
+            <button class="btn btn-primary btn-block">save</button>
+         </form>
+      </div>
+   </div>
+{% endblock %}

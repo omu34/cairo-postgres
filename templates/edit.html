@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block head %}
+ item 
+{% endblock %}
+{% block body %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <div class="card card-body">
+            <form action="/update/{{item2.id}}" method="post">
+                <div class="form-group">
+                    <input type="text" name="name" value="{{item2.name}}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="barcode" value="{{item2.barcode}}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="number" name="price" value="{{item2.price}}" class="form-control">
+                </div>               
+                
+                <div class="form-group">
+                    <input type="text" name="description" value="{{item2.description}}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">update</button>
+                </div>
+{% endblock %}
